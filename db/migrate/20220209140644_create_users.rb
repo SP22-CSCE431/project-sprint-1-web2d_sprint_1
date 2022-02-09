@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.boolean :isAdmin
       t.string :role
       t.string :bio
-      t.int :portfolioID
+      t.integer :portfolioID
 
       t.timestamps
     end
