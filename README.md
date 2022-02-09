@@ -41,3 +41,6 @@ After Navigating to localhost:3000 on your browser you should see the 'Yay! You'
 `rails scaffold`
 
 `Keep on adding to this`
+
+Staging: https://web2d-staging.herokuapp.com/
+Production: https://web2d.herokuapp.com/
