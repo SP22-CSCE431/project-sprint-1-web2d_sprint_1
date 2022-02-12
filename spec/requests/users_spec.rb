@@ -19,10 +19,12 @@ RSpec.describe "/users", type: :request do
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
+    # (username: 'Froggers', password: '12345', email: 'gmail@gmail.com', isAdmin: 'False', role: 'Member', bio: 'I am a frog', portfolioID: '1')
   }
 
   let(:invalid_attributes) {
     skip("Add a hash of attributes invalid for your model")
+    # (username: nil, password: nil, email: nil, isAdmin: nil, role: nil, bio: nil, portfolioID: nil)
   }
 
   describe "GET /index" do
