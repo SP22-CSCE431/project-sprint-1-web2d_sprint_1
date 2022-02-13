@@ -1,0 +1,33 @@
+.username{
+  color: rgb(87, 87, 87);
+  font-weight: bolder;
+  font-size: 60px;
+}
+
+.role{
+  padding-top: 0px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.bio{
+  padding-top: 0px;
+  font-size: 17px;
+}
+
+.flex-container{
+  display: flex;
+}
+
+.flex-child image{
+  flex: 1;
+  border: 2px solid yellow;
+}
+
+.flex-child:first-child{
+  margin-right: 20px;
+}
+
+.eof-buttons{
+  padding-top: 30px;
+}
