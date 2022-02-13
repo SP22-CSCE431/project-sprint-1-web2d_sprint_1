@@ -133,7 +133,7 @@ RSpec.describe 'Creating a user with valid attributes', type: :feature do
       expect(page).not_to have_content('harry potter')
       expect(page).not_to have_content('wizard')
     end
-    scenario 'invalid name' do
+    scenario 'invalid role' do
       visit new_user_path
       fill_in 'user_username', with: 'harry potter'
       fill_in 'user_email', with: 'britwiz@tamu.edu'
@@ -143,6 +143,17 @@ RSpec.describe 'Creating a user with valid attributes', type: :feature do
       visit users_path
       expect(page).not_to have_content('harry potter')
       expect(page).not_to have_content('britwiz@tamu.edu')
+    end
+    scenario 'incorrect email' do
+      visit new_user_path
+      fill_in 'user_username', with: 'harry potter'
+      fill_in 'user_email', with: 'britwiz@hogwarts.edu'
+      fill_in 'user_bio', with: 'I am a wizard'
+      fill_in 'user_role', with: 'wizard'
+      click_on 'Create User'
+      expect(page).not_to have_content('harry potter')
+      expect(page).not_to have_content('britwiz@tamu.edu')
+      expect(page).to have_content('Wrong email address.')
     end
   end
 #ALL TESTS SHOULD BE PLACED ABOVE THIS ONE
