@@ -67,6 +67,22 @@ RSpec.describe 'Editing a user', type: :feature do
     end
 end
 
+RSpec.describe 'User Profile', type: :feature do
+  before(:each) do
+    Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+    Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+    visit root_path
+    click_link "Sign in with Google"
+  end
+  scenario 'valid inputs' do
+    tempUser = User.create!(username: 'Froggers', email: 'gmail@gmail.com', isAdmin: 'False', role: 'Member', bio: 'I am a frog')
+    visit user_path(tempUser)
+    expect(page).to have_content('Froggers')
+    expect(page).to have_content('Member')
+    expect(page).to have_content('I am a frog')
+  end
+end
+
 RSpec.describe 'Creating a user with valid attributes', type: :feature do
     before(:each) do
       Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]

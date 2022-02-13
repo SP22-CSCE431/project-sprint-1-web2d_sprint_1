@@ -4,7 +4,7 @@ require 'rails_helper'
 # User unit tests
 RSpec.describe User, type: :model do
     subject do
-      described_class.new(username: 'ben', password: 'password', email: 'ben@tamu.edu',
+      described_class.new(username: 'ben', email: 'ben@tamu.edu',
                         isAdmin: 'True', role: 'Officer', bio: 'I\'m Ben')
     end
   
@@ -26,8 +26,8 @@ RSpec.describe User, type: :model do
   
 RSpec.describe User, type: :model do
     subject do
-      described_class.new(username: 'Froggers', password: '12345', email: 'gmail@gmail.com', 
-                        isAdmin: 'False', role: 'Member', bio: 'I like to draw', portfolioID: '1')
+      described_class.new(username: 'Froggers', email: 'gmail@gmail.com', 
+                        isAdmin: 'False', role: 'Member', bio: 'I like to draw')
     end
   
     it 'is valid with valid attributes' do
