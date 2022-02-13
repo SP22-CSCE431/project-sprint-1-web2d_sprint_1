@@ -21,16 +21,22 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
-    # !!!!!!!!!!!!!!!!!!! check if the email appears in the admin table !!!!!!!!!!!!!!!!!!!!!!!!!!!
-    @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+    # verify that the email is in the admin table
+    if Admin.exists?(email: User.ids)
+      @user = User.new(user_params)
+      respond_to do |format|
+        if @user.save
+          format.html { redirect_to user_url(@user), notice: "User was successfully created." }
+          format.json { render :show, status: :created, location: @user }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+    else # email is not in admin table
+      respond_to do |format|
+      format.html { redirect_to users_url, notice: "Wrong email address." }
+      format.json
       end
     end
   end
@@ -66,6 +72,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user,:email, :role, :bio, :isAdmin).permit(:username, :email, :role, :bio, :isAdmin)
+      params.require(:user).permit(:username, :email, :role, :bio, :isAdmin)
     end
 end
