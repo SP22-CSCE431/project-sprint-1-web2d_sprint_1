@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     # verify that the email is in the admin table
-    if Admin.exists?(email: User.ids)
+    if Admin.exists?(email: user_params[:email])
       @user = User.new(user_params)
       respond_to do |format|
         if @user.save
