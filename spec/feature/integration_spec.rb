@@ -2,6 +2,25 @@
 require 'rails_helper'
 require 'omniauth'
 
+RSpec.describe 'Creating a user with valid attributes', type: :feature do
+    before(:each) do
+      Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+      Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+      visit root_path
+      click_link "Sign in with Google"
+    end
+    scenario 'valid inputs' do
+      visit new_user_path
+      fill_in 'user_username', with: 'harry potter'
+      fill_in 'user_email', with: 'britwiz@tamu.edu'
+      fill_in 'user_bio', with: 'I am a wizard'
+      fill_in 'user_role', with: 'wizard'
+      click_on 'Create User'
+      visit users_path
+      expect(page).to have_content('wizard')
+    end
+  end
+
 RSpec.describe 'Logging In and Logging Out', type: :feature do
     before(:each) do
       Rails.application.env_config["devise.mapping"] = Devise.mappings[:user] # If using Devise
@@ -22,15 +41,3 @@ RSpec.describe 'Logging In and Logging Out', type: :feature do
     end
 end
 
-RSpec.describe 'Creating a user with valid attributes', type: :feature do
-    scenario 'valid inputs' do
-      visit new_user_path
-      fill_in 'username', with: 'harry potter'
-      fill_in 'email', with: 'britwiz@tamu.edu'
-      fill_in 'bio', with: 'I am a wizard'
-      fill_in 'role', with: 'wizard'
-      click_on 'Create User'
-      visit users_path
-      expect(page).to have_content('wizard')
-    end
-  end
