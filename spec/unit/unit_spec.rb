@@ -26,7 +26,8 @@ RSpec.describe User, type: :model do
   
 RSpec.describe User, type: :model do
     subject do
-      described_class.new(username: 'Froggers', password: '12345', email: 'gmail@gmail.com', isAdmin: 'False', bio: 'I like to draw', portfolioID: '1')
+      described_class.new(username: 'Froggers', password: '12345', email: 'gmail@gmail.com', 
+                        isAdmin: 'False', role: 'Member', bio: 'I like to draw', portfolioID: '1')
     end
   
     it 'is valid with valid attributes' do
