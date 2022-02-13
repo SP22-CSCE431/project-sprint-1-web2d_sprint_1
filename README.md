@@ -45,5 +45,7 @@ After Navigating to localhost:3000 on your browser you should see the 'Yay! You'
 
 `Keep on adding to this`
 
+`rails g controller <route> <name>`
+
 Staging: https://web2d-staging.herokuapp.com/
 Production: https://web2d.herokuapp.com/

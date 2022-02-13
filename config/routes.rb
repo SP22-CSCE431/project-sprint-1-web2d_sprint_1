@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'officer_page/officers'
   resources :users
   root to: 'dashboards#show'
   devise_for :admins, controllers: { omniauth_callbacks: 'admins/omniauth_callbacks' }
