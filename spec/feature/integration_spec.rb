@@ -12,7 +12,7 @@ RSpec.describe 'Editing a user bio', type: :feature do
     scenario 'valid inputs' do
       tempUser = User.create!(username: 'Froggers', password: '12345', email: 'gmail@gmail.com', isAdmin: 'False', role: 'Member', bio: 'I am a frog', portfolioID: '1')
       visit edit_user_path(tempUser)
-      fill_in 'bio', with: 'I like to draw'
+      fill_in 'user_bio', with: 'I like to draw'
       click_on 'Update User'
       visit users_path
       expect(page).to have_content('I like to draw')
@@ -20,7 +20,7 @@ RSpec.describe 'Editing a user bio', type: :feature do
     scenario 'invalid inputs' do
       tempUser = User.create!(username: 'Froggers', password: '12345', email: 'gmail@gmail.com', isAdmin: 'False', role: 'Member', bio: 'I am a frog', portfolioID: '1')
       visit edit_user_path(tempUser)
-      fill_in 'bio', with: ''
+      fill_in 'user_bio', with: ''
       click_on 'Update User'
       visit users_path
       expect(page).to have_content('I am a frog')
@@ -37,7 +37,7 @@ RSpec.describe 'Editing a user', type: :feature do
     scenario 'valid input username' do
       tempUser = User.create!(username: 'Froggers', password: '12345', email: 'gmail@gmail.com', isAdmin: 'False', role: 'Member', bio: 'I am a frog', portfolioID: '1')
       visit edit_user_path(tempUser)
-      fill_in 'username', with: 'Doggers'
+      fill_in 'user_username', with: 'Doggers'
       click_on 'Update User'
       visit users_path
       expect(page).to have_content('Doggers')
@@ -45,7 +45,7 @@ RSpec.describe 'Editing a user', type: :feature do
     scenario 'valid input password' do
       tempUser = User.create!(username: 'Froggers', password: '12345', email: 'gmail@gmail.com', isAdmin: 'False', role: 'Member', bio: 'I am a frog', portfolioID: '1')
       visit edit_user_path(tempUser)
-      fill_in 'password', with: '54321'
+      fill_in 'user_password', with: '54321'
       click_on 'Update User'
       visit users_path
       expect(page).to have_content('54321')
@@ -53,7 +53,7 @@ RSpec.describe 'Editing a user', type: :feature do
     scenario 'valid input email' do
       tempUser = User.create!(username: 'Froggers', password: '12345', email: 'gmail@gmail.com', isAdmin: 'False', role: 'Member', bio: 'I am a frog', portfolioID: '1')
       visit edit_user_path(tempUser)
-      fill_in 'email', with: 'dog@dog.com'
+      fill_in 'user_email', with: 'dog@dog.com'
       click_on 'Update User'
       visit users_path
       expect(page).to have_content('dog@dog.com')
@@ -61,14 +61,14 @@ RSpec.describe 'Editing a user', type: :feature do
     scenario 'valid input isAdmin' do
       tempUser = User.create!(username: 'Froggers', password: '12345', email: 'gmail@gmail.com', isAdmin: 'False', role: 'Member', bio: 'I am a frog', portfolioID: '1')
       visit edit_user_path(tempUser)
-      fill_in 'isAdmin', with: 'True'
+      check 'user_isAdmin'
       visit users_path
-      expect(page).to have_content('True')
+      expect(page).to have_content('true')
     end
     scenario 'valid input role' do
       tempUser = User.create!(username: 'Froggers', password: '12345', email: 'gmail@gmail.com', isAdmin: 'False', role: 'Member', bio: 'I am a frog', portfolioID: '1')
       visit edit_user_path(tempUser)
-      fill_in 'role', with: 'Officer'
+      fill_in 'user_role', with: 'Officer'
       click_on 'Update User'
       visit users_path
       expect(page).to have_content('Officer')
@@ -76,7 +76,7 @@ RSpec.describe 'Editing a user', type: :feature do
     scenario 'valid input portfolioID' do
       tempUser = User.create!(username: 'Froggers', password: '12345', email: 'gmail@gmail.com', isAdmin: 'False', role: 'Member', bio: 'I am a frog', portfolioID: '1')
       visit edit_user_path(tempUser)
-      fill_in 'portfolioID', with: '2'
+      fill_in 'user_portfolioID', with: '2'
       click_on 'Update User'
       visit users_path
       expect(page).to have_content('2')
