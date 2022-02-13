@@ -1,2 +1,9 @@
-<h1>You're logged in! Welcome to the Admin Dashboard!</h1>
+<h1>You're logged in! Welcome to Web2D!</h1>
 <%= link_to "Sign Out", destroy_admin_session_path %>
+
+<div> 
+<h2>If you have not made an account yet, follow the link below. Please use the email you used to log in. </h1>
+<%= link_to 'Create Account Here', new_user_path %> <br>
+<h2>Otherwise, use this link to go to the index: </h2>
+<%= link_to 'Current Users', users_path %> <br>
+</div>
