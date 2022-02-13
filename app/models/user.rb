@@ -6,5 +6,4 @@ class User < ApplicationRecord
 
     validate :isAdmin
     validate :password
-    validate :portfolioID
 end
