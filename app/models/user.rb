@@ -1,3 +1,9 @@
 class User < ApplicationRecord
-    validate :role
+    validates :role, presence: true
+    validates :username, presence: true 
+    validates :email, presence: true
+    validates :bio, presence: true
+
+    validate :isAdmin
+    validate :password
 end
