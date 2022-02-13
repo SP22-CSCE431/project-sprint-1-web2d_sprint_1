@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
     validate :isAdmin
     validate :password
+    scope :officers, -> { where(isAdmin: true)}
 end
