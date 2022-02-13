@@ -19,8 +19,53 @@ RSpec.describe 'Creating a user with valid attributes', type: :feature do
       visit users_path
       expect(page).to have_content('wizard')
     end
+    scenario 'invalid name' do
+      visit new_user_path
+      fill_in 'user_username', with: ''
+      fill_in 'user_email', with: 'britwiz@tamu.edu'
+      fill_in 'user_bio', with: 'I am a wizard'
+      fill_in 'user_role', with: 'wizard'
+      click_on 'Create User'
+      visit users_path
+      expect(page).not_to have_content('britwiz@tamu.edu')
+      expect(page).not_to have_content('wizard')
+    end
+    scenario 'invalid email' do
+      visit new_user_path
+      fill_in 'user_username', with: 'harry potter'
+      fill_in 'user_email', with: ''
+      fill_in 'user_bio', with: 'I am a wizard'
+      fill_in 'user_role', with: 'wizard'
+      click_on 'Create User'
+      visit users_path
+      expect(page).not_to have_content('harry potter')
+      expect(page).not_to have_content('wizard')
+    end
+    scenario 'invalid name' do
+      visit new_user_path
+      fill_in 'user_username', with: 'harry potter'
+      fill_in 'user_email', with: 'britwiz@tamu.edu'
+      fill_in 'user_bio', with: ''
+      fill_in 'user_role', with: 'wizard'
+      click_on 'Create User'
+      visit users_path
+      expect(page).not_to have_content('harry potter')
+      expect(page).not_to have_content('wizard')
+    end
+    scenario 'invalid name' do
+      visit new_user_path
+      fill_in 'user_username', with: 'harry potter'
+      fill_in 'user_email', with: 'britwiz@tamu.edu'
+      fill_in 'user_bio', with: 'I am a wizard'
+      fill_in 'user_role', with: ''
+      click_on 'Create User'
+      visit users_path
+      expect(page).not_to have_content('harry potter')
+      expect(page).not_to have_content('britwiz@tamu.edu')
+    end
   end
-
+#ALL TESTS SHOULD BE PLACED ABOVE THIS ONE
+#Otherwise, they will not work
 RSpec.describe 'Logging In and Logging Out', type: :feature do
     before(:each) do
       Rails.application.env_config["devise.mapping"] = Devise.mappings[:user] # If using Devise
