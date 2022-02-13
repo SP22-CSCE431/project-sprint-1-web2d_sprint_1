@@ -6,6 +6,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def officers
+    @users = User.officers
+  end
+
   # # method for the officers page
   # def officers
   # end
